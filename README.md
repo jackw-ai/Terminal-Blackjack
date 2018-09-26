@@ -1,12 +1,12 @@
 # Terminal-Blackjack
 Terminal-based Blackjack game - with betting!
 
-## What is it
+## What is this?
 
 Play Blackjack in your UNIX terminal! Just like real Blackjack, you start out with chips, and place bets per round. The dealer deals to you and then to itself. The winner takes all! 
 
 ## Requirements
-Have Python3 installed. Python2 should be supported but not tested. Only the `random` package is used.
+Have Python3 installed. Python2 should be supported but not tested. Only the native `random` package is used.
 
 ## Instructions
 To launch the game, type 
@@ -80,4 +80,10 @@ You have 450 chips.
 Press s to start or q to quit
 ```
 
+If you lost all your chips, then its game over...
+```
+No more chips, ending game...
+```
+## Design and Implementation
+The game is implemented in python, using custom classes denoting a card, hand, and deck. Each deck is a list of cards that is shuffled during initiation. Each hand will contain a list of cards as well as the optimal total card sum, taking into account the dual values of an Ace. 
 
