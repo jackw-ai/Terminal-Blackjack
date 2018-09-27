@@ -8,7 +8,7 @@ SUITS = ('♠', '♥', '♦', '♣')
 RANK = {'A': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10}
 
 # risk-taking ability of dealer, increases with higher value
-RISK_FACTOR = 500
+RISK_FACTOR = 1000
 
 # starting number of chips to bet on
 STARTING_CHIPS = 500
@@ -212,8 +212,9 @@ class Game():
     def __init__(self):
         ''' initiates game and starting menu '''
         
-        print("===== Welcome to ♠ BlackJack =====")
-
+        print("=♣=♣=♣= Welcome to ♠ BlackJack =♣=♣=♣=")
+        print("=♥=♥= (c) 2018 Tingda Wang, ver 0.5 =♥=♥=\n")
+        
         # starting number of chips to bet on
         self.chips = STARTING_CHIPS
 
