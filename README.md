@@ -8,7 +8,7 @@ Play Blackjack in your UNIX terminal! Just like real Blackjack, you start out wi
 ## Requirements
 Have Python3 installed. Python2 should be supported but not tested. Only the native `random` package is used.
 
-## Instructions
+## Getting Started
 To launch the game, type 
 
 ```python BlackJack.py``` 
@@ -27,7 +27,10 @@ Then, following the prompt,
 
 press `s` and then hit `enter` to `start` or press `q` and `enter` to quit. Since inputs use the python default `input` command, (no fancy pygame GUI this time, sorry!) be sure to press enter afterwards.
 
-## How to play
+## Blackjack Rules
+The same rules of blackjack apply here, getting as close to 21 as possible without busting (going over). However, common practices, as per wikipedia, such as buying insurance, surrendering, doubledown, and split, are not implemented. Also, the player sees the starting hand of the dealer.
+
+## How to Play
 
 When given the prompt
 ```Place your bet:``` enter the integer number of chips to bet. The game will start with a starting hand
@@ -39,7 +42,7 @@ When given the prompt
 ♠ 10 
 ♣ A 
 ```
-The same rules of blackjack apply here, getting as close to 21 as possible without busting (going over). When prompted with 
+When prompted with 
 ```
 Hit or Stand?
 (Press enter to hit, other key to stand)
@@ -85,5 +88,20 @@ If you lost all your chips, then its game over...
 No more chips, ending game...
 ```
 ## Design and Implementation
-The game is implemented in python, using custom classes denoting a card, hand, and deck. Each deck is a list of cards that is shuffled during initiation. Each hand will contain a list of cards as well as the optimal total card sum, taking into account the dual values of an Ace. 
+The game is implemented in python, using custom classes denoting a card, hand, and deck. Only a simple vector-based (dynamic array) list data structure are used for this program, since we only need to keep track of sets of cards. Each card has a rank and suit, both of which are global constants stored in a dictionary and list, respectively. The rank dictionary will map the rank character to its corresponding blackjack value. We only use this map for non-Ace cards. Each deck is a list of cards that is shuffled during initiation. Each hand will contain a list of cards as well as the optimal total card sum, taking into account the dual values of an Ace. Each time an ace is dealt, we keep track of the number of aces that we denote as `11`s so when the hand goes over, we can lower their values to `1`.
+
+Since the game is single player, only one deck is used, and each round reinstantiates the deck with a full set of cards so we never run out. However, during one instantiation of the game program, you start with a fixed number of chips that will last until you quit or run out. Your chip count never resets unless the program restarts.
+
+Each round of dealing will update the hand `value` as well as a `twentyone` boolean that determines whether the hand has reached `blackjack`. These two variables determines the result of each dealing and whether to prompt for more hits.
+
+The dealer AI will choose to deal or hold depending on its value only, to model a real game setting where more than one player plays and to make the game easier. To model a real-life decision setting, there is a `RISK` variable that denotes the risk-taking behavior of the dealer. The program determines whether the dealer hits by taking a random integer between 1 and 1000 and seeing if it is less than the risk variable divided by `n`, a factor based on how close the current hand value is to `21`. Therefore, the dealer will stand unless 
+```
+randint < RISK / n
+```
+The higher the `RISK` constant, the more likely the dealer will take risks by hitting. 
+
+Of course, we could implement the dealer AI to take into account the player hand, but since there is only 1 player, that means the dealer will always deal if his hand has less value than the player's, leading to much less variation in playstyle.
+
+
+
 
