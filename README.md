@@ -98,7 +98,7 @@ The dealer AI will choose to deal or hold depending on its value only, to model 
 ```
 randint < RISK / n
 ```
-The higher the `RISK` constant, the more likely the dealer will take risks by hitting. 
+The higher the `RISK` constant, the more likely the dealer will take risks by hitting. Feel free to change this global constant to change up the dealer playstyle. The current value is set to `500` for a very conservative player.
 
 Of course, we could implement the dealer AI to take into account the player hand, but since there is only 1 player, that means the dealer will always deal if his hand has less value than the player's, leading to much less variation in playstyle.
 
